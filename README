@@ -1,0 +1,38 @@
+This sketch assumes you have a DS1307 RTC attached to your Arduino with the time set.
+
+You can specify at the start of the sketch the start and end hour and minute.
+If you wanted, you can add seconds and adjust the logic statement to check that too.
+
+As the RTC doesn't return hour, minute, or seconds with a leading zero, you need to declare them without.
+For example:
+
+	If you wanted something to start at 5 minutes past the hour
+
+		byte startMinute = 5;
+
+	not
+		
+		byte startMinute = 05;
+
+
+Also, make sure you enter the hour in the 24-hour clock format, again observing a lack of leading zero:
+
+	If you wanted something to start at 7a.m:
+
+		byte startHour = 7;
+
+	not
+	
+		byte startHour = 07;
+
+
+	And for 9p.m, enter:
+
+		byte startHour = 21;
+
+	not
+
+		byte startHour = 9;
+
+
+This sketch has an LED connected to digital pin 2. You don't have to control an LED, it's just there to show functionality. When the start time or end time is reached, turnLightsOn() or turnLightsOff() respectively are called. In reality, this can be any function you wish to call at the specified time. It's useful for way beyond just turning a light on and off!
